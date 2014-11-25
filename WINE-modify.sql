@@ -1,0 +1,11 @@
+START TRANSACTION;
+ALTER TABLE wines DROP INDEX `natural_key`;
+ALTER TABLE wines DROP FOREIGN KEY `wines_ibfk_2`;
+ALTER TABLE wines DROP INDEX `appelation`;
+ALTER TABLE wines DROP COLUMN appelation;
+ALTER TABLE wines DROP COLUMN name;
+ALTER TABLE wines change COLUMN winery winery varchar(14) NOT NULL;
+SELECT * from wines ORDER BY id;
+UPDATE wines SET price=(price + ((1000-cases)/score)*10);
+SELECT * from wines ORDER BY id;
+COMMIT;
